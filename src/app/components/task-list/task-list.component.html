@@ -1,0 +1,45 @@
+<!-- *ngIf="tasklist; else noTasks -->
+<ul class="collection c" *ngIf="(tasklist | async)?.length > 0; else noTasks">
+  <ng-container
+    *ngFor="let task of tasklist | async; let i = index"
+    [ngSwitch]="task.done"
+  >
+    <li class="collection-item row" *ngSwitchCase="false">
+      <span class="col s7" appChecked [date]="task.createDate"
+        >{{ i + 1 }}. {{ task.name }}</span
+      >
+      <span class="col s3"
+        >Wykonać do: {{ task.deadline | date: "d.MM EEEE":"":"pl" }}</span
+      >
+      <div class="col s2 right-align">
+        <button class="btn-floating btn-small green" (click)="done(task)">
+          <i class="material-icons">check</i>
+        </button>
+        <button class="btn-floating btn-small red ml-5" (click)="remove(task)">
+          <i class="material-icons">remove </i>
+        </button>
+      </div>
+    </li>
+    <li class="collection-item row" *ngSwitchCase="true">
+      <span class="col done s7" appChecked [date]="task.createDate"
+        >{{ task.name }} - Wykonano:
+        {{ task.executeDate | date: "d.MM EEEE":"":"pl" }}</span
+      >
+      <div class="col s5 right-align">
+        <button class="btn-floating btn-small red" (click)="remove(task)">
+          <i class="material-icons">remove </i>
+        </button>
+      </div>
+    </li>
+  </ng-container>
+</ul>
+<div class="col s2 left-align">
+  <button class="btn col s2 offset-s10 red" (click)="clear()">
+    Wyczyść
+  </button>
+</div>
+<ng-template #noTasks
+  ><p class="noData">
+    Brak Aktywnych Zadań
+  </p></ng-template
+>

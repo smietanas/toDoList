@@ -1,0 +1,15 @@
+.main {
+  display: table;
+  margin: auto;
+  height: 100vh;
+  width: 100vw;
+}
+.container {
+  display: table-cell;
+  vertical-align: middle;
+  background: #4ecdc4;
+}
+
+#login-page {
+  width: 800px;
+}

@@ -1,0 +1,39 @@
+<div class="row">
+  <ng-container *ngIf="isAdd; then AddOn; else AddOf"></ng-container>
+  <ng-template #AddOf>
+    <button class="btn col s2 offset-s10" (click)="switchEditMode()">
+      Dodaj zadanie
+    </button>
+  </ng-template>
+  <ng-template #AddOn>
+    <button class="btn col s2 offset-s10" (click)="switchEditMode()">
+      Zakończ Dodawanie
+    </button>
+  </ng-template>
+</div>
+
+<div class="row" *ngIf="isAdd">
+  <div class="input-field col s8">
+    <input id="task_name" type="text" class="validate" [(ngModel)]="taskName" />
+    <label for="task_name">Nazwa Zadania</label>
+  </div>
+  <div class="input-field col s2">
+    <input
+      id="create-date"
+      type="date"
+      class="validate"
+      [min]="dateMin"
+      [(ngModel)]="taskDeadline"
+    />
+    <label for="create">Deadline</label>
+  </div>
+  <div class="input-field col s2">
+    <button
+      class="btn-floating pulse"
+      (click)="add()"
+      [disabled]="taskName === '' || taskDeadline === null"
+    >
+      +
+    </button>
+  </div>
+</div>

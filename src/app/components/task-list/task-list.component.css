@@ -1,0 +1,24 @@
+.done {
+  color: silver;
+  text-decoration: line-through;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.par {
+  color: #26a69a;
+  font-style: italic;
+}
+
+.noData {
+  background-color: #26a69a;
+  padding: 15px;
+  border-radius: 2%;
+  color: white;
+}
+
+.c {
+  color: #ee6e73;
+}
